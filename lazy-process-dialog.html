@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<!--
+`lazy-process-dialog`
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="lazy-process-dialog">
+  <template>
+    <style>
+	    :root{
+		    --background-color:rgba(0,0,0,0.3);
+		    --dialog-color:rgba(255,255,255,0.8);
+	    }
+      :host {
+        display: block;
+        width:100vw;
+        height:100vh;
+        position: fixed;
+        background:var(--background-color)
+      }
+      .dialog{
+	      background:var(--dialog-color);
+	      position: absolute;
+	      top:50%;
+	      left:50%;
+	      transform: translate3d(-50%,-50%,0);
+	      padding:36px;
+	      border-radius: 30px;
+	      text-align: center;
+      }
+      .heading{
+	      padding-top:12px;
+      }
+    </style>
+    <div class="dialog">
+	    <paper-spinner active="[[active]]"></paper-spinner>
+	    <div class="heading">
+		    [[heading]]
+	    </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'lazy-process-dialog',
+
+      properties: {
+        active:{
+	        type:Boolean,
+	        value:false
+        },
+        heading:{
+	        type:String,
+	        value:"讀取中…"
+        }
+      },
+
+    });
+  </script>
+</dom-module>
