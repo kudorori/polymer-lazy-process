@@ -14,30 +14,34 @@
 		    --background-color:rgba(0,0,0,0.3);
 		    --dialog-color:rgba(255,255,255,0.8);
 	    }
-      :host {
-        display: block;
-        width:100vw;
-        height:100vh;
-        position: fixed;
-        background:var(--background-color);
-        top:0;
-        left:0;
-      }
-      .dialog{
-	      background:var(--dialog-color);
-	      position: absolute;
-	      top:50%;
-	      left:50%;
-	      transform: translate3d(-50%,-50%,0);
-	      padding:36px;
-	      border-radius: 30px;
-	      text-align: center;
-      }
-      .heading{
-	      padding-top:12px;
-      }
+	    :host{
+		    display:none;
+	    }
+		:host[active] {
+			display: block;
+			width:100vw;
+			height:100vh;
+			position: fixed;
+			background:var(--background-color);
+			top:0;
+			left:0;
+			z-index:9999;
+		}
+		.dialog{
+			background:var(--dialog-color);
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform: translate3d(-50%,-50%,0);
+			padding:36px;
+			border-radius: 30px;
+			text-align: center;
+		}
+		.heading{
+			padding-top:12px;
+		}
     </style>
-    <div class="dialog" hiiden="[[!active]]">
+    <div class="dialog">
 	    <paper-spinner active="[[active]]"></paper-spinner>
 	    <div class="heading">
 		    [[heading]]
@@ -53,7 +57,8 @@
       properties: {
         active:{
 	        type:Boolean,
-	        value:false
+	        value:false,
+	        reflectToAttribute:true
         },
         heading:{
 	        type:String,
